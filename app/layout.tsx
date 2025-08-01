@@ -3,7 +3,10 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
   title: "Ekostat - Krásný kámen | Ekostat - Krásný kámen | Kamenické práce a výrobky",
@@ -19,7 +22,7 @@ export const metadata: Metadata = {
     title: "Ekostat - Krásný kámen | Kamenické práce a výrobky",
     description:
       "Z kamene dodáváme: dlažby, obklady, obrubníky, kostky, stoly, parapety, haklíky, schody, kašny a další atypické kamenické výrobky a prvky ruční kamenické výroby.",
-    url: "https://www.ekostat.cz",
+    url: "https://www.krasnykamen.cz",
     siteName: "Ekostat - Krásný kámen",
     locale: "cs_CZ",
     type: "website",
@@ -52,12 +55,13 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#57534e" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style>{`
-html {
-  font-family: ${inter.style.fontFamily};
-  --font-sans: ${inter.variable};
-}
-        `}</style>
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            html {
+              font-family: ${JSON.stringify(inter.style.fontFamily)};
+            }
+          `
+        }} />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
